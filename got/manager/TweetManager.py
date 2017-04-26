@@ -35,13 +35,29 @@ class TweetManager:
 				tweetPQ = PyQuery(tweetHTML)
 				tweet = models.Tweet()
 				
-				usernameTweet = tweetPQ("span.username.js-action-profile-name b").text();
-				txt = re.sub(r"\s+", " ", tweetPQ("p.js-tweet-text").text().replace('# ', '#').replace('@ ', '@'));
-				retweets = int(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""));
-				favorites = int(tweetPQ("span.ProfileTweet-action--favorite span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""));
-				dateSec = int(tweetPQ("small.time span.js-short-timestamp").attr("data-time"));
-				id = tweetPQ.attr("data-tweet-id");
-				permalink = tweetPQ.attr("data-permalink-path");
+				usernameTweet = ""
+				txt = ""
+				retweets = 0
+				favorites = 0
+				dateSec = 0
+				id = ""
+				permalink = ""
+
+				if(tweetPQ("span.username.js-action-profile-name b") != None):
+					usernameTweet = tweetPQ("span.username.js-action-profile-name b").text();
+				if(tweetPQ("p.js-tweet-text") != None):
+					txt = re.sub(r"\s+", " ", tweetPQ("p.js-tweet-text").text().replace('# ', '#').replace('@ ', '@'));
+				if(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count") != None):
+					retweets = int(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""));
+				if(tweetPQ("span.ProfileTweet-action--favorite span.ProfileTweet-actionCount").attr("data-tweet-stat-count") != None):
+					favorites = int(tweetPQ("span.ProfileTweet-action--favorite span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""));
+
+				if(tweetPQ("small.time span.js-short-timestamp").attr("data-time") != None):
+					dateSec = int(tweetPQ("small.time span.js-short-timestamp").attr("data-time"));
+				if(tweetPQ.attr("data-tweet-id") != None):
+					id = tweetPQ.attr("data-tweet-id");
+				if(tweetPQ.attr("data-permalink-path") != None):
+					permalink = tweetPQ.attr("data-permalink-path");
 				
 				geo = ''
 				geoSpan = tweetPQ('span.Tweet-geo')
