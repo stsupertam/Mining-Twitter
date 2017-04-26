@@ -11,8 +11,6 @@ def main():
 		outputFile.flush();
 		print 'More %d saved on file...\n' % len(tweets)
 		
-		outputFile.close()
-		print 'Done. Output file generated "output_got.csv".'
 
 	tweetCriteria = got.manager.TweetCriteria().setUsername("realDonaldTrump") 
 	outputFile = codecs.open("output.csv", "w+", "utf-8")
@@ -20,6 +18,8 @@ def main():
 	print 'Searching...\n'
 	
 	got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
+	outputFile.close()
+	print 'Done. Output file generated "output_got.csv".'
 
 if __name__ == '__main__':
 	main() 
