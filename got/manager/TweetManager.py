@@ -35,13 +35,13 @@ class TweetManager:
 				tweetPQ = PyQuery(tweetHTML)
 				tweet = models.Tweet()
 				
-				usernameTweet = ""
-				txt = ""
+				usernameTweet = ''
+				txt = ''
 				retweets = 0
 				favorites = 0
 				dateSec = 0
-				id = ""
-				permalink = ""
+				id = ''
+				permalink = ''
 
 				if(tweetPQ("span.username.js-action-profile-name b") != None):
 					usernameTweet = tweetPQ("span.username.js-action-profile-name b").text();
