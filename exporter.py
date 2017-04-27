@@ -72,7 +72,7 @@ def main(argv):
 			outputFile.flush();
 			global i
 			i += 100
-			print 'More %d saved on file...\n' % len(tweets)
+			print 'More %d saved on file...' % len(tweets)
 			print 'Totaltweets %d...\n' % i
 
 		got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
