@@ -66,17 +66,17 @@ def main(argv):
         outputFile = codecs.open(output, "w+", "utf-8")
 
         outputFile.write(
-            'username,date,retweets,favorites,text,geo,mentions,hashtags,id,permalink'
+            'date,attention,text,hashtags,id,permalink'
         )
 
         print 'Searching...\n'
 
         def receiveBuffer(tweets):
             for t in tweets:
+                attention = t.retweets + t.favorites + 1
                 outputFile.write(
-                    ('\n%s,%s,%d,%d,"%s",%s,%s,%s,"%s",%s' %
-                     (t.username, t.date.strftime("%Y-%m-%d %H:%M"),
-                      t.retweets, t.favorites, t.text, t.geo, t.mentions,
+                    ('\n%s,%d,"%s",%s,%s,%s' %
+                     (t.date.strftime("%Y-%m-%d %H:%M"), attention, t.text,
                       t.hashtags, t.id, t.permalink)))
             outputFile.flush()
             global i
