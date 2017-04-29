@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 
-import sys,getopt,got,datetime,codecs
+import sys, getopt, got, datetime, codecs
 
 i = 0
 
+
 def main(argv):
 
-	if len(argv) == 0:
-		print 'You must pass some parameters. Use \"-h\" to help.'
-		return
-		
-	if len(argv) == 1 and argv[0] == '-h':
-		print """\nTo use this jar, you can pass the folowing attributes:
+    if len(argv) == 0:
+        print 'You must pass some parameters. Use \"-h\" to help.'
+        return
+
+    if len(argv) == 1 and argv[0] == '-h':
+        print """\nTo use this jar, you can pass the folowing attributes:
     username: Username of a specific twitter account (without @)
        since: The lower bound date (yyyy-mm-aa)
        until: The upper bound date (yyyy-mm-aa)
@@ -30,58 +31,67 @@ def main(argv):
  
  # Example 4 - Get the last 10 top tweets by username
  python exporter.py --username "barackobama" --maxtweets 10 --toptweets\n"""
-		return
- 
-	try:
-		opts, args = getopt.getopt(argv, "", ("username=", "since=", "until=", "querysearch=", "toptweets", "maxtweets=", "output="))
-		
-		output = "output.csv"
-		tweetCriteria = got.manager.TweetCriteria()
-		
-		for opt,arg in opts:
-			if opt == '--username':
-				tweetCriteria.username = arg
-				
-			elif opt == '--since':
-				tweetCriteria.since = arg
-				
-			elif opt == '--until':
-				tweetCriteria.until = arg
-				
-			elif opt == '--querysearch':
-				tweetCriteria.querySearch = arg
-				
-			elif opt == '--toptweets':
-				tweetCriteria.topTweets = True
-				
-			elif opt == '--maxtweets':
-				tweetCriteria.maxTweets = int(arg)
-			
-			elif opt == '--output':
-				output = arg
-				
-		
-		outputFile = codecs.open(output, "w+", "utf-8")
-		
-		outputFile.write('username,date,retweets,favorites,text,geo,mentions,hashtags,id,permalink')
-		
-		print 'Searching...\n'
-		def receiveBuffer(tweets):
-			for t in tweets:
-				outputFile.write(('\n%s,%s,%d,%d,"%s",%s,%s,%s,"%s",%s' % (t.username, t.date.strftime("%Y-%m-%d %H:%M"), t.retweets, t.favorites, t.text, t.geo, t.mentions, t.hashtags, t.id, t.permalink)))
-			outputFile.flush();
-			global i
-			i += 100
-			print 'More %d saved on file...' % len(tweets)
-			print 'Totaltweets %d...\n' % i
+        return
 
-		got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
-		
-	except arg:
-		print 'Arguments parser error, try -h' + arg
-	finally:
-		outputFile.close()
-		print 'Done. Output file generated "%s".' %output
+    try:
+        opts, args = getopt.getopt(argv, "", ("username=", "since=", "until=",
+                                              "querysearch=", "toptweets",
+                                              "maxtweets=", "output="))
+
+        output = "output.csv"
+        tweetCriteria = got.manager.TweetCriteria()
+
+        for opt, arg in opts:
+            if opt == '--username':
+                tweetCriteria.username = arg
+
+            elif opt == '--since':
+                tweetCriteria.since = arg
+
+            elif opt == '--until':
+                tweetCriteria.until = arg
+
+            elif opt == '--querysearch':
+                tweetCriteria.querySearch = arg
+
+            elif opt == '--toptweets':
+                tweetCriteria.topTweets = True
+
+            elif opt == '--maxtweets':
+                tweetCriteria.maxTweets = int(arg)
+
+            elif opt == '--output':
+                output = arg
+
+        outputFile = codecs.open(output, "w+", "utf-8")
+
+        outputFile.write(
+            'username,date,retweets,favorites,text,geo,mentions,hashtags,id,permalink'
+        )
+
+        print 'Searching...\n'
+
+        def receiveBuffer(tweets):
+            for t in tweets:
+                outputFile.write(
+                    ('\n%s,%s,%d,%d,"%s",%s,%s,%s,"%s",%s' %
+                     (t.username, t.date.strftime("%Y-%m-%d %H:%M"),
+                      t.retweets, t.favorites, t.text, t.geo, t.mentions,
+                      t.hashtags, t.id, t.permalink)))
+            outputFile.flush()
+            global i
+            i += 100
+            print 'More %d saved on file...' % len(tweets)
+            print 'Totaltweets %d...\n' % i
+
+        got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
+
+    except arg:
+        print 'Arguments parser error, try -h' + arg
+    finally:
+        outputFile.close()
+        print 'Done. Output file generated "%s".' % output
+
 
 if __name__ == '__main__':
-	main(sys.argv[1:])
+    main(sys.argv[1:])

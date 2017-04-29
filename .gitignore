@@ -90,3 +90,4 @@ ENV/
 
 *.json
 *.csv
+*.ipynb
