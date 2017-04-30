@@ -14,7 +14,7 @@ dictionary = {
         'investigate', 'rob', 'steal', 'alibi', 'armed', 'burglar',
         'car alarm', 'alarm', 'legal', 'illegal', 'weapon'
     ],
-    'enviroment': [
+    'environment': [
         'climate', 'habitat', 'setting', 'surroundings', 'ambiance',
         'backdrop', 'background', 'circumstances', 'element', 'encompassment',
         'entourage', 'jungle', 'locale', 'milieu', 'neighborhood', 'purlieus',

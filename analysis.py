@@ -27,21 +27,12 @@ def group_tweet(text):
             print e
             continue
         
-    d = OrderedDict(sorted(total.items(), key=itemgetter(1)))
-    print d.keys()[3]
-    if d.values()[3] == 0:
-        return 0
+    d = OrderedDict(sorted(total.items(), key=itemgetter(1), reverse=True))
+    #print d.values()[0]
+    if d.values()[0] == 0:
+        return "Unknown"
     else:
-        if d.keys()[3] == "crimes":
-            return 1
-        if d.keys()[3] == "environment":
-            return 2
-        if d.keys()[3] == "families":
-            return 3
-        if d.keys()[3] == "education":
-            return 4
-        else:
-            return -1
+        return d.keys()[0]
 
 def main(argv):
 
@@ -71,11 +62,13 @@ def main(argv):
         print e
         return
     
+    print '\n'
     tweets = pd.DataFrame()
     tweets['text'] = map(lambda tweet: tweet.get('text', None), tweets_data)
+    tweets['attention'] = map(lambda tweet: tweet.get('attention', None), tweets_data)
     tweets['tag'] = tweets['text'].apply(lambda tweet: group_tweet(tweet))
-    for i in tweets['tag']:
-        print i
+    print tweets['attention']
+    print "%s attention : %s" % (tweets['tag'], tweets['attention'])
     #print tweets.head()
 
 
