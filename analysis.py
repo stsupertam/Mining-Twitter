@@ -2,6 +2,7 @@
 
 import sys
 import csv
+import os.path
 import re
 import numpy
 import json
@@ -10,6 +11,14 @@ import matplotlib.pyplot as plt
 from mykeyword import dictionary
 from collections import OrderedDict
 from operator import itemgetter
+
+def create_outputfile(df, tag):
+    t = df['tag'].str.contains(tag)    
+    output = tag + "_out.csv"
+    if os.path.exists(output):
+        df[t].to_csv(output, mode='a', header=False, index=False)
+    else:
+        df[t].to_csv(output, index=False)
 
 def group_tweet(text):
 
@@ -71,17 +80,8 @@ def main(argv):
     tweets['tag'] = tweets['text'].apply(lambda tweet: group_tweet(tweet))
     tweets['attention'] = map(lambda tweet: tweet.get('attention', None), tweets_data)
 
-    crime = tweets['tag'].str.contains('crimes')    
-    environment = tweets['tag'].str.contains('environment')    
-    education = tweets['tag'].str.contains('education')
-    families = tweets['tag'].str.contains('families')
-    unknown = tweets['tag'].str.contains('unknown')
 
-    tweets[crime].to_csv("crime_out.csv", index=False)
-    tweets[environment].to_csv("environment_out.csv", index=False)
-    tweets[education].to_csv("education_out.csv", index=False)
-    tweets[families].to_csv("families_out.csv", index=False)
-    tweets[unknown].to_csv("unknown_out.csv", index=False)
+    create_outputfile(tweets, 'crimes')
 
 if __name__ == '__main__':
     main(sys.argv[1:])
