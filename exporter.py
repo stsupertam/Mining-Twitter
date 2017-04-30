@@ -1,8 +1,41 @@
 # -*- coding: utf-8 -*-
 
-import sys, getopt, got, datetime, codecs
+import sys
+import getopt
+import got
+import datetime
+import codecs
+import json
+import re
+import getopt
+from collections import OrderedDict
+from operator import itemgetter
+from timeit import default_timer as timer
 
 i = 0
+
+def find_tag(text, dictionary):
+    
+    total = {}
+    for title in dictionary:
+        total[title] = 0
+        try:
+            for word in dictionary[title]:
+                word = word.lower()
+                text = text.lower()
+                match = re.search(word, text)
+                if match:
+                    total[title] += 1
+        except Exception as e:
+            print e
+            continue
+
+    d = OrderedDict(sorted(total.items(), key=itemgetter(1), reverse=True))
+    #print d.values()[0]
+    if d.values()[0] == 0:
+        return "unknown"
+    else:
+        return d.keys()[0]
 
 
 def main(argv):
@@ -38,7 +71,7 @@ def main(argv):
                                               "querysearch=", "toptweets",
                                               "maxtweets=", "output="))
 
-        output = "output.csv"
+        output = "./dataset/output.csv"
         tweetCriteria = got.manager.TweetCriteria()
 
         for opt, arg in opts:
@@ -61,20 +94,26 @@ def main(argv):
                 tweetCriteria.maxTweets = int(arg)
 
             elif opt == '--output':
-                output = arg
+                output = "./dataset/" + arg
 
         outputFile = codecs.open(output, "w+", "utf-8")
 
-        outputFile.write('date,attention,text')
-
+        outputFile.write(
+            'date;attention;id;permalink;tag;text'
+        )
         print 'Searching...\n'
+
+        data = {}
+        with open('mykeyword_small.json') as data_file:    
+            data = json.load(data_file)
 
         def receiveBuffer(tweets):
             for t in tweets:
                 attention = t.retweets + t.favorites + 1
+                tag = find_tag(t.text, data)
                 outputFile.write(
-                    ('\n%s,%d,"%s"' % (t.date.strftime("%Y-%m-%d %H:%M"),
-                                       attention, t.text, )))
+                    ('\n%s;%d;%s;%s;%s;"%s"' % (t.date.strftime("%Y-%m-%d %H:%M"),
+                                       attention, t.id, t.permalink, tag, t.text )))
             outputFile.flush()
             global i
             i += 100
@@ -86,9 +125,11 @@ def main(argv):
     except arg:
         print 'Arguments parser error, try -h' + arg
     finally:
-        outputFile.close()
         print 'Done. Output file generated "%s".' % output
 
 
 if __name__ == '__main__':
+    start = timer()
     main(sys.argv[1:])
+    end = timer()
+    print(end - start)     

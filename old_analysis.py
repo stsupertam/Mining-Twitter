@@ -78,8 +78,7 @@ def main(argv):
     print '\n'
     tweets = pd.DataFrame()
     tweets['date'] = map(lambda tweet: tweet.get('date', None), tweets_data)
-    tweets['attention'] = map(lambda tweet: tweet.get('attention', None),
-                              tweets_data)
+    tweets['attention'] = map(lambda tweet: tweet.get('attention', None), tweets_data)
     tweets['text'] = map(lambda tweet: tweet.get('text', None), tweets_data)
     tweets['tag'] = tweets['text'].apply(lambda tweet: group_tweet(tweet))
 

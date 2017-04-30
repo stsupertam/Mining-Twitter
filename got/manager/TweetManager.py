@@ -46,7 +46,7 @@ class TweetManager:
 				if(tweetPQ("span.username.js-action-profile-name b") != None):
 					usernameTweet = tweetPQ("span.username.js-action-profile-name b").text();
 				if(tweetPQ("p.js-tweet-text") != None):
-					txt = re.sub(r"\s+", " ", tweetPQ("p.js-tweet-text").text().replace('# ', '#').replace('@ ', '@'));
+    					txt = re.sub(r"\s+", " ", tweetPQ("p.js-tweet-text").text().replace('# ', '#').replace('@ ', '@'));
 				if(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count") != None):
 					retweets = int(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""));
 				if(tweetPQ("span.ProfileTweet-action--favorite span.ProfileTweet-actionCount").attr("data-tweet-stat-count") != None):
