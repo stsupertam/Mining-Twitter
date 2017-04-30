@@ -12,13 +12,16 @@ from mykeyword import dictionary
 from collections import OrderedDict
 from operator import itemgetter
 
+
 def create_outputfile(df, tag):
-    t = df['tag'].str.contains(tag)    
+
+    t = df['tag'].str.contains(tag)
     output = tag + "_out.csv"
     if os.path.exists(output):
         df[t].to_csv(output, mode='a', header=False, index=False)
     else:
         df[t].to_csv(output, index=False)
+
 
 def group_tweet(text):
 
@@ -35,13 +38,14 @@ def group_tweet(text):
         except Exception as e:
             print e
             continue
-        
+
     d = OrderedDict(sorted(total.items(), key=itemgetter(1), reverse=True))
     #print d.values()[0]
     if d.values()[0] == 0:
-        return "Unknown"
+        return "unknown"
     else:
         return d.keys()[0]
+
 
 def main(argv):
 
@@ -70,18 +74,22 @@ def main(argv):
     except Exception as e:
         print e
         return
-    
+
     print '\n'
     tweets = pd.DataFrame()
     tweets['date'] = map(lambda tweet: tweet.get('date', None), tweets_data)
+    tweets['attention'] = map(lambda tweet: tweet.get('attention', None),
+                              tweets_data)
     tweets['text'] = map(lambda tweet: tweet.get('text', None), tweets_data)
-    tweets['id'] = map(lambda tweet: tweet.get('id', None), tweets_data)
-    tweets['link'] = map(lambda tweet: tweet.get('permalink', None), tweets_data)
     tweets['tag'] = tweets['text'].apply(lambda tweet: group_tweet(tweet))
-    tweets['attention'] = map(lambda tweet: tweet.get('attention', None), tweets_data)
-
 
     create_outputfile(tweets, 'crimes')
+    create_outputfile(tweets, 'environment')
+    create_outputfile(tweets, 'families')
+    create_outputfile(tweets, 'education')
+    create_outputfile(tweets, 'government')
+    create_outputfile(tweets, 'unknown')
+
 
 if __name__ == '__main__':
     main(sys.argv[1:])
