@@ -12,10 +12,10 @@ dictionary = {
         'alarm', 'legal', 'illeg', 'weapon'
     ],
     'environment': [
-        'climate', 'habitat', 'setting', 'surroundings', 'ambiance',
-        'backdrop', 'background', 'circumstances', 'element', 'encompassment',
-        'entourage', 'jungle', 'locale', 'milieu', 'neighborhood', 'purlieus',
-        'terrain', 'territory', 'turf', 'neck of the woods', 'stomping ground'
+        'climat', 'habitat', 'set', 'surround', 'ambianc', 'backdrop', 'background',
+        'circumst', 'element', 'encompass', 'entourag', 'jungl', 'local', 'milieu',
+        'neighborhood', 'purlieu', 'terrain', 'territori', 'turf', 'neck of the wood','
+        'stomping ground'
     ],
     'families': [
         'clan', 'folk', 'household', 'tribe', 'ancestors', 'ancestry', 'birth',
