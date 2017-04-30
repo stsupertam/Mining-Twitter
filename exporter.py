@@ -66,7 +66,7 @@ def main(argv):
         outputFile = codecs.open(output, "w+", "utf-8")
 
         outputFile.write(
-            'date,attention,text,hashtags,id,permalink'
+            'date,attention,text,id,permalink'
         )
 
         print 'Searching...\n'
@@ -75,9 +75,9 @@ def main(argv):
             for t in tweets:
                 attention = t.retweets + t.favorites + 1
                 outputFile.write(
-                    ('\n%s,%d,"%s",%s,%s,%s' %
+                    ('\n%s,%d,"%s",%s,%s' %
                      (t.date.strftime("%Y-%m-%d %H:%M"), attention, t.text,
-                      t.hashtags, t.id, t.permalink)))
+                      t.id, t.permalink)))
             outputFile.flush()
             global i
             i += 100

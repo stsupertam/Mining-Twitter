@@ -64,14 +64,24 @@ def main(argv):
     
     print '\n'
     tweets = pd.DataFrame()
+    tweets['date'] = map(lambda tweet: tweet.get('date', None), tweets_data)
     tweets['text'] = map(lambda tweet: tweet.get('text', None), tweets_data)
-    tweets['attention'] = map(lambda tweet: tweet.get('attention', None), tweets_data)
+    tweets['id'] = map(lambda tweet: tweet.get('id', None), tweets_data)
+    tweets['link'] = map(lambda tweet: tweet.get('permalink', None), tweets_data)
     tweets['tag'] = tweets['text'].apply(lambda tweet: group_tweet(tweet))
-    print tweets['attention']
-    print "%s attention : %s" % (tweets['tag'], tweets['attention'])
-    #print tweets.head()
+    tweets['attention'] = map(lambda tweet: tweet.get('attention', None), tweets_data)
 
+    crime = tweets['tag'].str.contains('crimes')    
+    environment = tweets['tag'].str.contains('environment')    
+    education = tweets['tag'].str.contains('education')
+    families = tweets['tag'].str.contains('families')
+    unknown = tweets['tag'].str.contains('unknown')
 
+    tweets[crime].to_csv("crime_out.csv", index=False)
+    tweets[environment].to_csv("environment_out.csv", index=False)
+    tweets[education].to_csv("education_out.csv", index=False)
+    tweets[families].to_csv("families_out.csv", index=False)
+    tweets[unknown].to_csv("unknown_out.csv", index=False)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
