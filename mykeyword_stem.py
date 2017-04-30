@@ -1,18 +1,14 @@
 dictionary = {
     'crimes': [
-        'assault', 'blackmail', 'burglary', 'fraud', 'hijack', 'hooligan',
-        'kidnapp', 'mugger', 'murderer', 'robber', 'shoplifter', 'smuggler',
-        'terrorist', 'thief', 'vandal', 'appeal', 'barrister', 'caution',
-        'cell', 'community service', 'court', 'court case', 'death penalty',
-        'defense', 'fine', 'gaol', 'jail', 'guilty', 'imprisonment',
-        'innocent', 'judge', 'jury', 'justice', 'lawyer', 'offence',
-        'sentence', 'prison', 'probation', 'prosecution', 'punishment',
-        'capital punishment', 'corporal punishment', 'remand home',
-        'solicitor', 'trial', 'verdict', 'witness', 'arrest', 'ban',
-        'break in', 'break out', 'break the law', 'burgle', 'charge',
-        'commit a crime', 'escape', 'get away', 'get away with', 'hold up',
-        'investigate', 'rob', 'steal', 'alibi', 'armed', 'burglar',
-        'car alarm', 'alarm', 'legal', 'illegal', 'weapon'
+        'assault', 'blackmail', u'burglari', 'fraud', 'hijack', 'hooligan', 'kidnapp',
+        'mugger', u'murder', 'robber', u'shoplift', 'smuggler', 'terrorist', 'thief', 'vandal',
+        'appeal', u'barrist', 'caution', 'cell', u'community servic', 'court', u'court cas',
+        u'death penalti', u'defens', 'fine', 'gaol', 'jail', u'guilti', u'imprison', u'innoc', u'judg',
+        u'juri', u'justic', 'lawyer', u'offenc', u'sentenc', 'prison', u'probat', u'prosecut', u'punish',
+        u'capital punish', u'corporal punish', u'remand hom', 'solicitor', 'trial', 'verdict', u'wit', 'arrest',
+        'ban', 'break in', 'break out', 'break the law', u'burgl', u'charg', u'commit a crim', u'escap',
+        'get away', 'get away with', 'hold up', u'investig', 'rob', 'steal', 'alibi', u'arm', 'burglar',
+        'car alarm', 'alarm', 'legal', u'illeg', 'weapon'
     ],
     'environment': [
         'climate', 'habitat', 'setting', 'surroundings', 'ambiance',
