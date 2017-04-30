@@ -18,13 +18,10 @@ dictionary = {
         'stomping ground'
     ],
     'families': [
-        'clan', 'folk', 'household', 'tribe', 'ancestors', 'ancestry', 'birth',
-        'brood', 'children', 'descendants', 'descent', 'dynasty', 'forebears',
-        'genealogy', 'generations', 'genrestarin-laws', 'inheritance',
-        'kindred', 'lineage', 'parentage', 'pedigree', 'progenitors',
-        'progeny', 'race', 'relations', 'relationship', 'relatives',
-        'siblings', 'strain', 'starheirs and assignsstar', 'kith and kinstar',
-        'menagestar'
+        'clan', 'folk', 'household', 'tribe', 'ancestor', 'ancestri', 'birth', 'brood',
+        'children', 'descend', 'descent', 'dynasti', 'forebear', 'genealog', 'gener', 'genrestarin-law',
+        'inherit', 'kindr', 'lineag', 'parentag', 'pedigre', 'progenitor', 'progeni', 'race', 'relat',
+        'relationship', 'rel', 'sibl', 'strain', 'starheirs and assignsstar', 'kith and kinstar', 'menagestar'
     ],
     'education': [
         'school', 'nursery school', 'primary school', 'secondary school',
