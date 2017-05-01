@@ -1,0 +1,1 @@
+Folder contain data from #Trump and realDonaldTrump ‏
