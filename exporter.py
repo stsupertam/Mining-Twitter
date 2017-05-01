@@ -60,10 +60,10 @@ def main(argv):
  python exporter.py --querysearch "europe refugees" --maxtweets 1\n
 
  # Example 3 - Get tweets by username and bound dates [barackobama, '2015-09-10', '2015-09-12']
- python exporter.py --username "barackobama" --since 2015-09-10 --until 2015-09-12 --maxtweets 1\n
+ python exporter.py --username "realDonaldTrump ‏" --since 2015-09-10 --until 2015-09-12 --maxtweets 1\n
  
  # Example 4 - Get the last 10 top tweets by username
- python exporter.py --username "barackobama" --maxtweets 10 --toptweets\n"""
+ python exporter.py --username "realDonaldTrump ‏" --maxtweets 10 --toptweets\n"""
         return
 
     try:
@@ -71,7 +71,7 @@ def main(argv):
                                               "querysearch=", "toptweets",
                                               "maxtweets=", "output="))
 
-        output = "./dataset/output.csv"
+        output = "./dataset/output"
         tweetCriteria = got.manager.TweetCriteria()
 
         for opt, arg in opts:
@@ -79,6 +79,7 @@ def main(argv):
                 tweetCriteria.username = arg
 
             elif opt == '--since':
+                output = "./dataset/output_" + arg + ".csv"
                 tweetCriteria.since = arg
 
             elif opt == '--until':
