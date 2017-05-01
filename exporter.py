@@ -104,7 +104,7 @@ def main(argv):
         print 'Searching...\n'
 
         data = {}
-        with open('mykeyword_small.json') as data_file:    
+        with open('mykeyword.json') as data_file:    
             data = json.load(data_file)
 
         def receiveBuffer(tweets):
