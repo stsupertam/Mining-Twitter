@@ -1,18 +1,19 @@
+# -*- coding: utf-8 -*-
+
 import os
+import codecs
 
 data = []
-count = 0
-data.append("date;attention;id;permalink;tag;text")
+data.append('date;attention;id;permalink;tag;text\n')
 for fn in os.listdir('./dataset'):
-    if fn != 'Readme.txt':
+    if fn != 'Readme.txt' and fn != 'outputdata.csv':
         filename = "./dataset/" + fn 
-        with open(filename, 'r') as file:
+        with codecs.open(filename, 'r', 'utf-8') as file:
             for row in file:
-                count += 1
-                if row != "date;attention;id;permalink;tag;text":
+                if row != 'date;attention;id;permalink;tag;text\n':
                     data.append(row)
 
-with open("./dataset/outputdata.csv", 'w') as file:
+with codecs.open('./dataset/outputdata.csv', 'w', 'utf-8') as file:
     for row in data:
         file.write(row)
     

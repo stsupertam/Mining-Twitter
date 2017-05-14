@@ -44,7 +44,7 @@ class TweetManager:
 				permalink = ''
 
 				if(tweetPQ("span.username.js-action-profile-name b") != None):
-					usernameTweet = tweetPQ("span.username.js-action-profile-name b").text();
+					usernameTweet = tweetPQ("a.account-group span.username b").text();
 				if(tweetPQ("p.js-tweet-text") != None):
     					txt = re.sub(r"\s+", " ", tweetPQ("p.js-tweet-text").text().replace('# ', '#').replace('@ ', '@'));
 				if(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count") != None):

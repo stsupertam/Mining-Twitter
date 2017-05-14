@@ -97,10 +97,10 @@ def main(argv):
             elif opt == '--output':
                 output = "./dataset/" + arg
 
-        outputFile = codecs.open(output, "w+", "utf-8")
+        outputFile = codecs.open(output, 'w', 'utf-8') 
 
         outputFile.write(
-            'date;attention;id;permalink;tag;text'
+            'username;date;attention;id;permalink;tag;text'
         )
         print 'Searching...\n'
 
@@ -113,7 +113,7 @@ def main(argv):
                 attention = t.retweets + t.favorites + 1
                 tag = find_tag(t.text, data)
                 outputFile.write(
-                    ('\n%s;%d;%s;%s;%s;"%s"' % (t.date.strftime("%Y-%m-%d %H:%M"),
+                    ('\n%s;%s;%d;%s;%s;%s;"%s"' % (t.username, t.date.strftime("%Y-%m-%d %H:%M"),
                                        attention, t.id, t.permalink, tag, t.text )))
             outputFile.flush()
             global i
