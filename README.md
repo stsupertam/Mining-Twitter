@@ -1,16 +1,20 @@
 # How to run
 
-1. Clone this project
+#### 1. Clone this project
   ```
   $ git clone https://github.com/stsupertam/Mining-Twitter.git
   ```
-2. Install requirement
+#### 2. Install requirement
   ```
   $ pip install -r requirements.txt
   ```
-3. Excute exporter.py
+#### 3. Excute exporter.py
   ```
   $ python exporter.py --querysearch "#Trump ‏" --since 2017-04-01 --until 2017-04-07 --maxtweets 12500
+  ```
+#### Combine all data with combinefile.py
+  ```
+  $ python combinefile.py
   ```
 ## See more detail about GetOldTweets-python
 
