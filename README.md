@@ -12,11 +12,11 @@
   ```
   $ python exporter.py --querysearch "#Trump ‏" --since 2017-04-01 --until 2017-04-07 --maxtweets 12500
   ```
-#### Combine all data with combinefile.py
+#### Combine data with combinefile.py
   ```
   $ python combinefile.py
   ```
-## See more detail about GetOldTweets-python
+## For more detail about GetOldTweets-python
 
 https://github.com/Jefferson-Henrique/GetOldTweets-python
 
